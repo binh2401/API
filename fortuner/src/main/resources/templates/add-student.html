@@ -1,0 +1,27 @@
+<!-- src/main/resources/templates/add-nhac.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Nhac</title>
+</head>
+<body>
+<h1>Add New student</h1>
+<form action="/student-ui/add" method="post">
+    <label for="ten">Tên nhạc:</label>
+    <input type="text" id="ten" name="ten" th:value="${Student.ten}">
+
+    <label for="diem">diem:</label>
+    <input type="text" id="diem" name="diem" th:value="${Student.diem}">
+
+
+    <button type="submit">Thêm student</button>
+</form>
+
+<!-- Thêm phần hiển thị thông báo -->
+<div th:if="${param.message}">
+    <p th:text="${param.message}"></p>
+</div>
+
+</body>
+</html>

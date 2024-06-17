@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Sinh viên</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <form class="form-inline mb-3" th:action="@{/student-ui/search}" method="get">
+        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm theo tên" aria-label="Search" name="name">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
+    </form>
+
+    <h2>Danh sách Sinh viên</h2>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Tên Sinh viên</th>
+            <th>Điểm</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody id="studentTable"  th:each="Student : ${Students}">
+            <tr>
+                <td > <span th:text="${Student.ten}"></span></td>
+                <td > <span th:text="${Student.diem}"></span></td>
+                <td>
+                    <!-- Dynamic link for deleting each student -->
+                    <a th:href="@{/student-ui/delete/{id}(id=${Student.id})}"
+                       class="btn btn-danger"
+                       onclick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này?');">Xóa</a>
+                    <a th:href="@{/student-ui/edit/{id}(id=${Student.id})}"
+                       class="btn btn-warning">Sửa</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/student-ui/add}" class="btn btn-primary">Thêm Sinh Viên</a>
+</div>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Tên Sinh viên</th>
+            <th>Điểm</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Thymeleaf iteration over students -->
+        <tr th:each="student : ${students}">
+            <td><span th:text="${student.ten}"></span></td>
+            <td><span th:text="${student.diem}"></span></td>
+            <td>
+                <!-- Dynamic links for deleting and editing each student -->
+                <a th:href="@{/student-ui/delete/{id}(id=${student.id})}"
+                   class="btn btn-danger"
+                   onclick="return confirm('Bạn có chắc chắn muốn xóa sinh viên này?');">Xóa</a>
+                <a th:href="@{/student-ui/edit/{id}(id=${student.id})}"
+                   class="btn btn-warning">Sửa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/student-ui/add}" class="btn btn-primary">Thêm Sinh Viên</a>
+</div>
+
+
+</body>
+</html>

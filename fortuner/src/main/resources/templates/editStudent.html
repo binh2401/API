@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Student</title>
+    <!-- Thêm các thư viện CSS và JS cần thiết -->
+</head>
+<body>
+<h2>Edit Student</h2>
+
+<!-- Hiển thị thông báo lỗi nếu có -->
+<div th:if="${error}" class="alert alert-danger" role="alert">
+    <strong>Error:</strong> <span th:text="${error}"></span>
+</div>
+
+<!-- Form chỉnh sửa sinh viên -->
+<form th:action="@{/student-ui/update/{id}(id=${student.id})}" method="post" th:object="${student}">
+    <input type="hidden" th:field="*{id}" />
+    <div>
+        <label for="ten">Name:</label>
+        <input type="text" id="ten" name="ten" th:field="*{ten}" />
+    </div>
+    <div>
+        <label for="diem">Grade:</label>
+        <input type="text" id="diem" name="diem" th:field="*{diem}" />
+    </div>
+    <button type="submit">Save Changes</button>
+</form>
+
+<!-- Hiển thị thông báo thành công nếu có -->
+<div th:if="${message}" class="alert alert-success" role="alert">
+    <strong>Success:</strong> <span th:text="${message}"></span>
+</div>
+
+</body>
+</html>
